@@ -1,0 +1,57 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        string commandSumNumbers = "sum";
+        string commandExit = "exit";
+        string userInput = " ";
+
+        List<int> numbers = new List<int>();
+
+        bool isWorking = true;
+
+        while (isWorking)
+        {
+            Console.WriteLine("Добро пожаловать!");
+            Console.WriteLine($"Введите число или {commandSumNumbers}, чтобы почитать сумму всех введенных чисел.");
+            Console.WriteLine($"Чтобы выйти из программы, введите {commandExit}.");
+            userInput = Console.ReadLine();
+
+            if (userInput == commandSumNumbers)
+            {
+                ShowSumNumbers(numbers);
+            }
+            else if (userInput == commandExit)
+            {
+                Console.WriteLine("Вы вышли из программы.");
+                isWorking = false;
+            }
+            else
+            {
+                AddNumbers(numbers, userInput);
+            }
+        }
+
+        Console.ReadKey();
+    }
+
+    private static void ShowSumNumbers(List<int> numbers)
+    {
+        int sumNumbers = 0;
+
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            sumNumbers += numbers[i];
+        }
+
+        Console.WriteLine($"Сумма чисел - {sumNumbers}.");
+    }
+
+    private static void AddNumbers(List<int> numbers, string usetInput)
+    {
+        if(int.TryParse(usetInput, out int result))
+        {
+            numbers.Add(result);
+        }
+    }
+}
